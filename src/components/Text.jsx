@@ -7,29 +7,32 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.main,
-    fontWeight: theme.fontWeights.normal,
+    fontWeight: theme.fontWeights.normal
   },
   whiteText: {
-    color: theme.colors.whiteText,
+    color: theme.colors.whiteText
   },
   grayText: {
-    color: theme.colors.grayText,
+    color: theme.colors.grayText
   },
   colorTextSecondary: {
-    color: theme.colors.textSecondary,
+    color: theme.colors.textSecondary
   },
   colorPrimary: {
-    color: theme.colors.primary,
+    color: theme.colors.primary
   },
   fontSizeHeading: {
-    fontSize: theme.fontSizes.heading,
+    fontSize: theme.fontSizes.heading
   },
   fontSizeSubheading: {
-    fontSize: theme.fontSizes.subheading,
+    fontSize: theme.fontSizes.subheading
+  },
+  fontSizeBody: {
+    fontSize: theme.fontSizes.body
   },
   fontWeightBold: {
-    fontWeight: theme.fontWeights.bold,
-  },
+    fontWeight: theme.fontWeights.bold
+  }
 });
 
 const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
@@ -41,8 +44,9 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     color === 'primary' && styles.colorPrimary,
     fontSize === 'heading' && styles.fontSizeHeading,
     fontSize === 'subheading' && styles.fontSizeSubheading,
+    fontSize === 'body' && styles.fontSizeBody,
     fontWeight === 'bold' && styles.fontWeightBold,
-    style,
+    style
   ];
 
   return <NativeText style={textStyle} {...props} />;

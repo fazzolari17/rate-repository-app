@@ -6,14 +6,14 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   flexContainer: {
-    display: 'flex',
+    display: 'flex'
   },
   title: {
-    fontSize: 20,
-  },
+    fontSize: 20
+  }
 });
 
 const SmallItem = ({ value, label }) => {

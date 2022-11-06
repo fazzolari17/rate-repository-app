@@ -4,20 +4,23 @@ const theme = {
     textSecondary: '#586069',
     primary: '#0366d6',
     whiteText: '#FFF',
-    grayText: '#757575'
+    grayText: '#757575',
+    appBarBackground: '#24292e',
+    signInFormBackground: '#757575',
+    languageContainerBackground: '#0366d6'
   },
   fontSizes: {
-    body: 16,
-    subheading: 18,
     heading: 24,
+    subheading: 18,
+    body: 16
   },
   fonts: {
-    main: 'System',
+    main: 'System'
   },
   fontWeights: {
     normal: '400',
-    bold: '700',
-  },
+    bold: '700'
+  }
 };
 
 export default theme;

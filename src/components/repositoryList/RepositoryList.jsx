@@ -1,42 +1,43 @@
 import { FlatList, View, StyleSheet, Image } from 'react-native';
+import theme from '../../theme';
 import Text from '../Text';
 import SmallItem from './SmallItem';
 
 const styles = StyleSheet.create({
   separator: {
     height: 30,
-    backgroundColor: '#e1e4e8',
+    backgroundColor: '#e1e4e8'
   },
   container: {
     padding: 25,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   languageContainer: {
-    backgroundColor: '#0366d6',
+    backgroundColor: theme.colors.languageContainerBackground,
     padding: 15,
     alignSelf: 'flex-start',
-    borderRadius: 10,
+    borderRadius: 10
   },
   item: {
     display: 'flex',
-    margin: 20,
+    margin: 20
   },
   logo: {
     width: 100,
     height: 100,
     borderRadius: 7.5,
-    marginRight: 25,
+    marginRight: 25
   },
   flexContainer: {
-    display: 'flex',
+    display: 'flex'
   },
   flexRow: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   marginBottom: {
-    marginBottom: 10,
-  },
+    marginBottom: 10
+  }
 });
 
 export const repositories = [
@@ -49,7 +50,7 @@ export const repositories = [
     stargazersCount: 21553,
     ratingAverage: 88,
     reviewCount: 4,
-    ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/4060187?v=4',
+    ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/4060187?v=4'
   },
   {
     id: 'rails.rails',
@@ -60,7 +61,7 @@ export const repositories = [
     stargazersCount: 45377,
     ratingAverage: 100,
     reviewCount: 2,
-    ownerAvatarUrl: 'https://avatars1.githubusercontent.com/u/4223?v=4',
+    ownerAvatarUrl: 'https://avatars1.githubusercontent.com/u/4223?v=4'
   },
   {
     id: 'django.django',
@@ -71,7 +72,7 @@ export const repositories = [
     stargazersCount: 48496,
     ratingAverage: 73,
     reviewCount: 5,
-    ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/27804?v=4',
+    ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/27804?v=4'
   },
   {
     id: 'reduxjs.redux',
@@ -82,54 +83,28 @@ export const repositories = [
     stargazersCount: 52869,
     ratingAverage: 0,
     reviewCount: 0,
-    ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4',
-  },
+    ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4'
+  }
 ];
 
 const Item = ({ data }) => {
-  const {
-    fullName,
-    description,
-    language,
-    stargazersCount,
-    forksCount,
-    reviewCount,
-    ratingAverage,
-    ownerAvatarUrl,
-  } = data.item;
+  const { fullName, description, language, stargazersCount, forksCount, reviewCount, ratingAverage, ownerAvatarUrl } = data.item;
 
   return (
     <>
       <View style={styles.flexContainer}>
         <View style={[styles.flexContainer, styles.container]}>
-          <Image
-            style={styles.logo}
-            source={{ uri: ownerAvatarUrl }}
-            resizeMode={'cover'}
-          />
+          <Image style={styles.logo} source={{ uri: ownerAvatarUrl }} resizeMode={'cover'} />
           <View>
-            <Text
-              fontWeight={'bold'}
-              fontSize={'heading'}
-              style={styles.marginBottom}
-            >
+            <Text fontWeight={'bold'} fontSize={'heading'} style={styles.marginBottom}>
               {fullName}
             </Text>
-            <Text
-              fontSize={'heading'}
-              color={'grayText'}
-              style={styles.marginBottom}
-            >
+            <Text fontSize={'heading'} color={'grayText'} style={styles.marginBottom}>
               {description}
             </Text>
 
             <View style={styles.languageContainer}>
-              <Text
-                style={styles.marginBottom}
-                color={'whiteText'}
-                fontWeight="bold"
-                fontSize={'heading'}
-              >
+              <Text style={styles.marginBottom} color={'whiteText'} fontWeight={'bold'} fontSize={'heading'}>
                 {language}
               </Text>
             </View>
