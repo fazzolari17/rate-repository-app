@@ -1,12 +1,13 @@
-import Constants from 'expo-constants';
-import { Text, StyleSheet, View, FlatList } from 'react-native';
+// import Constants from 'expo-constants';
+import { StyleSheet, View } from 'react-native';
+import Text from './Text';
 
-import RepositoryList, { repositories  } from './RepositoryList';
+import RepositoryList from './repositoryList/RepositoryList';
+import AppBar from './appBar/AppBar';
 
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
     flexGrow: 1,
     flexShring: 1
   },
@@ -14,11 +15,12 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (<>
+    <AppBar >
+    <Text  fontSize='subHeading' fontWeight='bold' color='primary'>
+        Rate Repository Applications
+      </Text>
+      </AppBar>
     <View style={styles.container}>
-      <Text>Rate Repository Applications</Text>
-      <FlatList
-        data={repositories}
-      />
       <RepositoryList />
     </View>
     </>

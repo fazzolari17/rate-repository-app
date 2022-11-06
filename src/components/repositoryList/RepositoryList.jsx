@@ -1,8 +1,42 @@
-import { FlatList, View, StyleSheet, Text } from 'react-native';
+import { FlatList, View, StyleSheet, Image } from 'react-native';
+import Text from '../Text';
+import SmallItem from './SmallItem';
+
 
 const styles = StyleSheet.create({
   separator: {
-    height: 10,
+    height: 30,
+    backgroundColor: '#e1e4e8',
+  },
+  container: {
+    padding: 25,
+    flexDirection: 'row',
+  },
+  languageContainer: {
+    backgroundColor: '#0366d6',
+    padding: 15,
+    alignSelf: 'flex-start',
+    borderRadius: 10,
+  },
+  item: {
+    display: 'flex',
+    margin: 20,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    borderRadius: 7.5,
+    marginRight: 25,
+  },
+  flexContainer: {
+    display: 'flex',
+  },
+  flexRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  marginBottom: {
+    marginBottom: 10,
   },
 });
 
@@ -62,18 +96,40 @@ const Item = ({ data }) => {
     forksCount, 
     reviewCount, 
     ratingAverage, 
+    ownerAvatarUrl,
   } = data.item;
 
   return (
-    <View style={styles.item}>
-      <Text style={styles.title}>Full Name: {fullName}</Text>
-      <Text style={styles.title}>Description: {description}</Text>
-      <Text style={styles.title}>Language: {language}</Text>
-      <Text style={styles.title}>Stars: {stargazersCount}</Text>
-      <Text style={styles.title}>Forks: {forksCount}</Text>
-      <Text style={styles.title}>Reviews: {reviewCount}</Text>
-      <Text style={styles.title}>Rating: {ratingAverage}</Text>
+    <>
+    <View style={styles.flexContainer}>
+      <View style={[styles.flexContainer, styles.container]}>
+        <Image
+          style={styles.logo}
+          source={{ uri: ownerAvatarUrl }}
+          resizeMode={'cover'}
+        />
+        <View>
+          <Text fontWeight={'bold'} fontSize={'heading'} 
+          style={styles.marginBottom}
+          >{fullName}
+          </Text>
+          <Text fontSize={'heading'} color={'grayText'} style={styles.marginBottom}>{description}</Text>
+
+          <View style={styles.languageContainer}>
+            <Text style={styles.marginBottom} color={'whiteText'} fontWeight='bold' fontSize={'heading'}>{language}</Text>
+          </View>
+
+        </View>
+      </View>
+      <View style={[styles.flexContainer, styles.flexRow]}>
+        <SmallItem value={stargazersCount} label={'Stars'} />
+        <SmallItem value={forksCount} label={'Forks'} />
+        <SmallItem value={reviewCount} label={'Reviews'} />
+        <SmallItem value={ratingAverage} label={'Ratings'} />
+        <View style={styles.separator}></View>
+      </View>
     </View>
+    </>
   );
 };
 
@@ -88,7 +144,7 @@ const RepositoryList = () => {
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      // keyExtractor={item => item.id}
       // other props
     />
   );
