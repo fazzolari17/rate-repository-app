@@ -7,7 +7,9 @@ const theme = {
     grayText: '#757575',
     appBarBackground: '#24292e',
     signInFormBackground: '#757575',
-    languageContainerBackground: '#0366d6'
+    languageContainerBackground: '#0366d6',
+    errorColor: '#d73a4a',
+    normalBorder: '#586069'
   },
   fontSizes: {
     heading: 24,
