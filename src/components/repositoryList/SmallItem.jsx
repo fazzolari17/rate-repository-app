@@ -13,15 +13,19 @@ const style = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-  }
+  },
 });
-const SmallItem = ({ value, label }) => {
 
+const SmallItem = ({ value, label }) => {
   return (
-      <View style={[style.flexContainer, style.centeredItems]}>
-          <Text fontWeight='bold' fontSize={'heading'} style={style.title}>{value}</Text>
-          <Text color={'grayText'} fontSize={'subheading'}>{label}</Text>
-        </View>
+    <View style={[style.flexContainer, style.centeredItems]}>
+      <Text fontWeight={'bold'} fontSize={'heading'} style={style.title}>
+        {value}
+      </Text>
+      <Text color={'grayText'} fontSize={'subheading'}>
+        {label}
+      </Text>
+    </View>
   );
 };
 

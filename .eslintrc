@@ -13,6 +13,10 @@
   "rules": {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "quotes": [ "error", "single"], 
+    "no-trailing-spaces": 2,
+    "eqeqeq": 1,
+    "curly": 2
   }
 }

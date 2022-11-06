@@ -1,32 +1,36 @@
-import { View, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
-import Text from '../Text';
+import { Link } from 'react-router-native';
+import Tab from './Tab';
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#24292e', 
-    height: 150,
+    backgroundColor: '#24292e',
+    height: 75,
     padding: 20,
   },
   content: {
     display: 'flex',
-    justifyContent: 'center'
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems:'center',
   },
   appBarText: {
-    color: '#FFF'
-  }
+    color: '#FFF',
+  },
   // ...
 });
 
 const AppBar = () => {
-  return <View style={[styles.container, styles.content]}>
-    <Pressable onPress={() => Alert.alert('Pressed')}>
-      <Text color='whiteText' fontSize='bold'>
-        Repositories
-      </Text>
-    </Pressable>
-  </View>;
+  return (
+    <View style={[styles.container, styles.content]}>
+      <ScrollView horizontal>
+        <Link to='/'><Tab label={'Repositories'}/></Link>
+        <Link to='signIn'><Tab label={'Sign In'}/></Link>
+      </ScrollView>
+    </View>
+  );
 };
 
 export default AppBar;

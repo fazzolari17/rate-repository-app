@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   whiteText: {
     color: theme.colors.whiteText,
   },
-  grayText: { 
+  grayText: {
     color: theme.colors.grayText,
   },
   colorTextSecondary: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
   fontSizeHeading: {
-    fontSize: theme.fontSizes.heading
+    fontSize: theme.fontSizes.heading,
   },
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
