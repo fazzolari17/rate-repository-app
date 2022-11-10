@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import style from './styles';
 import { Formik } from 'formik';
 import SignInForm from './SignInForm';
+import { useSignIn } from '../../hooks/useSignIn';
 
 const initialValues = {
   username: '',
@@ -18,21 +19,20 @@ password: yup
   .min(7, 'Password must be 7 or more characters')
   .required('Password is required')
 });
-// const validation = (values) => {
-//   const requiredError = 'Field is required';
-//   const errors = {};
-//   if (!values.userName) {
-//     errors.userName = requiredError;
-//   }
-//   if (!values.password) {
-//     errors.password = requiredError;
-//   }
-//   return errors;
-// };
 
 const SignIn = () => {
-  const onSubmit = ({ username, password }) => {
-    console.log(username, password);
+  const [signIn] = useSignIn();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log({ username, password });
   };
 
   return (

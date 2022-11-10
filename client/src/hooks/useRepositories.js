@@ -6,8 +6,8 @@ const useRepositories = () => {
   const [repositories, setRepositories] = useState();
   const { data, error, loading } = useQuery(GET_REPOSITORIES, { fetchPolicy: 'cache-and-network' })
 
+  // need to fix a problem where this does no set the data the first time around
   const fetchRepositories = async () => {
-    await data
     try {
       setRepositories(data.repositories);
     } catch (error) {
