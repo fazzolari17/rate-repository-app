@@ -32,7 +32,6 @@ const SignIn = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log({ username, password });
   };
 
   return (
