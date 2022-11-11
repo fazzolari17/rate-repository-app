@@ -28,7 +28,6 @@ const SignIn = () => {
 
     try {
       const { data } = await signIn({ username, password });
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -36,9 +35,9 @@ const SignIn = () => {
 
   return (
     <>
-      <Formik style={style.padding} initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+        <Formik style={style.padding} initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
-      </Formik>
+        </Formik>
     </>
   );
 };

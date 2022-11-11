@@ -82,14 +82,18 @@ const Item = ({ data }) => {
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  const { repositories, refetch } = useRepositories();
+
+  if (!repositories) {
+    refetch();
+  }
 
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : []; 
 
   const renderItem = ({ item }) => (
-    <Item data={{ item }} /> // title={item.id} />
+    <Item data={{ item }} />
   );
   return (
     <FlatList
