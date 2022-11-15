@@ -35,6 +35,20 @@ const styles = StyleSheet.create({
   },
   marginBottom: {
     marginBottom: 10
+  },
+  gitHubButton: {
+    backgroundColor: theme.colors.languageContainerBackground,
+    padding: 15,
+    alignSelf: 'center',
+    width: '90%',
+    borderRadius: 10
+  },
+  gitHubButtonText: {
+    alignSelf: 'center'
+  },
+  description: {
+    width: '80%',
+    marginBottom: 10,
   }
 });
 

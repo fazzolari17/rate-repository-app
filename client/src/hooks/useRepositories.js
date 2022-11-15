@@ -4,9 +4,8 @@ import { GET_REPOSITORIES } from '../graphql/queries/getRepositories';
 
 const useRepositories = () => {
   const [repositories, setRepositories] = useState();
-  const { data, error, loading } = useQuery(GET_REPOSITORIES, { fetchPolicy: 'cache-and-network' })
+  const { data, error, loading } = useQuery(GET_REPOSITORIES, { fetchPolicy: 'cache-and-network' });
 
-  // need to fix a problem where this does no set the data the first time around
   const fetchRepositories = async () => {
     try {
       setRepositories(data.repositories);
@@ -14,7 +13,6 @@ const useRepositories = () => {
       console.log(error);
     }
   };
-
 
   useEffect(() => {
     fetchRepositories();
