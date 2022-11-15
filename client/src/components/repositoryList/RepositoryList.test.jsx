@@ -47,6 +47,7 @@ describe('RepositoryList', () => {
           },
         ],
       };
+      
       const { debug, getByText, findAllByText, findAllByAltText, getAllByRole, getAllByTestId } = render(
         <RepositoryListContainer repositories={repositories} />
       );
@@ -78,9 +79,8 @@ describe('RepositoryList', () => {
       // Test that the Images render and are the correct url 
       const images = await getAllByTestId('avatarImage');
       expect(images).toHaveLength(2);
-      expect(images[0].props.source.uri).toBe('https://avatars2.githubusercontent.com/u/4060187?v=4')
-      expect(images[1].props.source.uri).toBe('https://avatars1.githubusercontent.com/u/54310907?v=4')
-      console.log(images[0].props);
+      expect(images[0].props.source.uri).toBe('https://avatars2.githubusercontent.com/u/4060187?v=4');
+      expect(images[1].props.source.uri).toBe('https://avatars1.githubusercontent.com/u/54310907?v=4');
 
       // // Add your test code here
     });
