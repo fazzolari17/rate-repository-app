@@ -1,9 +1,9 @@
-import { FlatList, Pressable, View } from "react-native";
+import { FlatList, Pressable } from "react-native";
 import Item from './Item';
-import styles from './styles'
+import ItemSeparator from './ItemSeparator';
 import { useParams, useNavigate } from 'react-router-native';
 
-const ItemSeparator = () => <View style={styles.separator} />;
+
 
 const RepositoryListContainer = ({ repositories }) => {
   const param = useParams()

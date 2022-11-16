@@ -49,6 +49,27 @@ const styles = StyleSheet.create({
   description: {
     width: '80%',
     marginBottom: 10,
+  },
+  rating: {
+    display: 'flex',
+    borderWidth: 2,
+    padding: 10,
+    borderColor: theme.colors.languageContainerBackground,
+    color: theme.colors.languageContainerBackground,
+    borderRadius: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50,
+
+  },
+  reviewContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-around',
+    padding: 10,
+   
   }
 });
 

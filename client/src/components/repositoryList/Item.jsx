@@ -16,7 +16,7 @@ const Item = ({ data }) => {
 
   return (
     <>
-      <View testID='repositoryItem' style={styles.flexContainer}>
+      <View testID='repositoryItem' style={[styles.flexContainer, { paddingBottom: 20 }]}>
         <View style={[styles.flexContainer, styles.container]}>
           <Image style={styles.logo} source={{ uri: ownerAvatarUrl }} resizeMode={'cover'} testID='avatarImage' />
           <View>
