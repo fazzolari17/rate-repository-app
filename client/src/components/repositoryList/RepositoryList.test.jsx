@@ -1,57 +1,25 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import RepositoryListContainer from './RepositoryListContainer';
+import { repositories } from '../../../setupTests';
+import { useNavigate } from 'react-router-native';
+import { DebugInstructions } from 'react-native/Libraries/NewAppScreen';
 
+jest.mock('react-router-native', () => ({
+  ...jest.requireActual('react-router-native'),
+  useNavigate: () => (jest.fn())
+}))
 describe('RepositoryList', () => {
   describe('RepositoryListContainer', () => {
     it('renders repository information correctly', async () => {
-      const repositories = {
-        totalCount: 8,
-        pageInfo: {
-          hasNextPage: true,
-          endCursor:
-            'WyJhc3luYy1saWJyYXJ5LnJlYWN0LWFzeW5jIiwxNTg4NjU2NzUwMDc2XQ==',
-          startCursor: 'WyJqYXJlZHBhbG1lci5mb3JtaWsiLDE1ODg2NjAzNTAwNzZd',
-        },
-        edges: [
-          {
-            node: {
-              id: 'jaredpalmer.formik',
-              fullName: 'jaredpalmer/formik',
-              description: 'Build forms in React, without the tears',
-              language: 'TypeScript',
-              forksCount: 1619,
-              stargazersCount: 21856,
-              ratingAverage: 88,
-              reviewCount: 3,
-              ownerAvatarUrl:
-                'https://avatars2.githubusercontent.com/u/4060187?v=4',
-            },
-            cursor: 'WyJqYXJlZHBhbG1lci5mb3JtaWsiLDE1ODg2NjAzNTAwNzZd',
-          },
-          {
-            node: {
-              id: 'async-library.react-async',
-              fullName: 'async-library/react-async',
-              description: 'Flexible promise-based React data loader',
-              language: 'JavaScript',
-              forksCount: 69,
-              stargazersCount: 1760,
-              ratingAverage: 72,
-              reviewCount: 4,
-              ownerAvatarUrl:
-                'https://avatars1.githubusercontent.com/u/54310907?v=4',
-            },
-            cursor:
-              'WyJhc3luYy1saWJyYXJ5LnJlYWN0LWFzeW5jIiwxNTg4NjU2NzUwMDc2XQ==',
-          },
-        ],
-      };
       
-      const { debug, getByText, findAllByText, findAllByAltText, getAllByRole, getAllByTestId } = render(
-        <RepositoryListContainer repositories={repositories} />
+      const { debug, getByText, findAllByText, findAllByAltText, getAllByRole, getAllByTestId, getByTestId, queryByText } = render(
+          <RepositoryListContainer repositories={repositories} />
       );
-      
+
+      const button = queryByText(/open in github/i);
+      expect(button).toBeNull();
+
       // Dynamic info user 1
       expect(getByText('jaredpalmer/formik')).toBeVisible();
       expect(getByText('Build forms in React, without the tears')).toBeVisible();
@@ -81,8 +49,6 @@ describe('RepositoryList', () => {
       expect(images).toHaveLength(2);
       expect(images[0].props.source.uri).toBe('https://avatars2.githubusercontent.com/u/4060187?v=4');
       expect(images[1].props.source.uri).toBe('https://avatars1.githubusercontent.com/u/54310907?v=4');
-
-      // // Add your test code here
     });
   });
 });

@@ -4,15 +4,12 @@ import SmallItem from './SmallItem';
 import styles from './styles';
 import * as Linking from 'expo-linking';
 
-const Item = ({ data }) => {
+const Item = ({ data, onClick }) => {
   const { fullName, description, language, stargazersCount, forksCount, reviewCount, ratingAverage, ownerAvatarUrl, url } = data.item;
 
 
 
-  const logIntoGit = () => {
-    Linking.openURL(url);
-
-  };
+  const handleClick = (url) => onClick(url);
 
   return (
     <>
@@ -43,7 +40,7 @@ const Item = ({ data }) => {
         </View>
         {data.show &&
           <View style={styles.gitHubButton}>
-          <Pressable onPress={logIntoGit}>
+          <Pressable onPress={() => handleClick(url)}>
             <Text style={[styles.marginBottom, styles.gitHubButtonText]} color={'whiteText'} fontWeight={'bold'} fontSize={'heading'}>
               Open in Github
             </Text>
