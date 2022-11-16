@@ -5,6 +5,7 @@ import Tab from './Tab';
 import useCheckAuthentication from '../../hooks/useCheckAuthentication';
 import useAuthStorage from '../../hooks/useAuthStorage';
 import { useApolloClient } from '@apollo/client';
+import { useNavigate } from 'react-router-native';
 
 
 const styles = StyleSheet.create({
@@ -30,11 +31,13 @@ const AppBar = () => {
   const { data, error, loading, label } = useCheckAuthentication();
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
+  const navigate = useNavigate();
 
   const signOut = async () => {
     try {
       await authStorage.removeAccessToken();
       apolloClient.resetStore();
+      navigate('/');
       
     } catch (error) {
       console.log("Unable to sign Out:", error)
@@ -55,6 +58,9 @@ const AppBar = () => {
         <Link to='/'>
           <Tab label={'Repositories'} />
         </Link>
+        {(label === 'Sign Out') && <Link to='/reviewForm'>
+          <Tab label={'Create Review'} />
+        </Link>}
         {signInLabel}
       </ScrollView>
     </View>
