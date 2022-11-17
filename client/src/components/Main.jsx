@@ -6,6 +6,7 @@ import SignIn from './signIn/SignIn';
 import { Routes, Route, Navigate } from 'react-router-native';
 import SingleRepository from './repositoryList/singleRepository';
 import ReviewForm from './reviewForm';
+import SignUp from './signUp/index';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,7 +22,8 @@ const Main = () => {
         <AppBar />
         <Routes>
           <Route path={'/'} element={<RepositoryList />} exact />
-          <Route path={'signIn'} element={<SignIn />} />
+          <Route path={'/signIn'} element={<SignIn />} />
+          <Route path={'/signUp'} element={<SignUp />} />
           <Route path={'/:id'} element={<SingleRepository />} />
           <Route path={'/reviewForm'} element={<ReviewForm />} />
           <Route path={'*'} element={<Navigate to='/' replace />} />

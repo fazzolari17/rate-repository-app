@@ -62,6 +62,9 @@ const AppBar = () => {
           <Tab label={'Create Review'} />
         </Link>}
         {signInLabel}
+        {(label === 'Sign In') && <Link to='/signUp'>
+          <Tab label={'Sign Up'} />
+        </Link>}
       </ScrollView>
     </View>
   );
