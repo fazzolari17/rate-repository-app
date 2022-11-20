@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import theme from '../theme';
 
-// eslint-disable-next-line no-unused-vars
 const styles = StyleSheet.create({
   borderError: {
     borderColor: theme.colors.errorColor

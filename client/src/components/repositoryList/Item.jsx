@@ -2,7 +2,6 @@ import { View, Image, Pressable } from 'react-native';
 import Text from '../Text';
 import SmallItem from './SmallItem';
 import styles from './styles';
-import * as Linking from 'expo-linking';
 
 const Item = ({ data, onClick }) => {
   const { fullName, description, language, stargazersCount, forksCount, reviewCount, ratingAverage, ownerAvatarUrl, url } = data.item;

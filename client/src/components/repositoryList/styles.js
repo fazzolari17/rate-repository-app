@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { BackHandler, StyleSheet } from "react-native";
 import theme from "../../theme";
 
 const styles = StyleSheet.create({
@@ -69,7 +69,20 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-around',
     padding: 10,
-   
+  },
+  menuBtn: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: theme.colors.textPrimary,
+  },
+  menuBtnHeight: {
+    height: 50,
+  },
+  menu: {
+    width: '99%',
+  },
+  menuSelection: {
+    color: '#A9A9A9'
   }
 });
 

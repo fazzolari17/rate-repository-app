@@ -1,6 +1,4 @@
-import { fireEvent, render, waitFor, screen } from '@testing-library/react-native';
-import { act } from 'react-test-renderer';
-import FormikTextInput from '../FormikTextInput';
+import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import SignUpForm from './SignUpForm';
 
 const handleSubmit = jest.fn();
