@@ -1,6 +1,6 @@
 const oneHour = 1000 * 60 * 60;
 
-const createDateColumns = date => ({
+const createDateColumns = (date) => ({
   created_at: date,
   updated_at: date,
 });
@@ -12,7 +12,7 @@ const commonColumns = {
   password,
 };
 
-exports.seed = async knex => {
+exports.seed = async (knex) => {
   await knex('users').del();
 
   await knex('users').insert([
@@ -43,6 +43,36 @@ exports.seed = async knex => {
     {
       id: '753f3e99-e73a-43a3-9a50-b30d7727c0eb',
       username: 'leeroyjenkins',
+      ...commonColumns,
+      ...createDateColumns(new Date(Date.now() - 5 * oneHour)),
+    },
+    {
+      id: 'b30d7727c0eb-e73a-43a3-9a50-753f3e99',
+      username: 'donforrister',
+      ...commonColumns,
+      ...createDateColumns(new Date(Date.now() - 5 * oneHour)),
+    },
+    {
+      id: '753f3e99-e73a-43a3-9a50-b8d29c32200c',
+      username: 'jeanforrister',
+      ...commonColumns,
+      ...createDateColumns(new Date(Date.now() - 5 * oneHour)),
+    },
+    {
+      id: '753f3e99-e73a-43a3-9a50-d79e65f18aa2',
+      username: 'bill',
+      ...commonColumns,
+      ...createDateColumns(new Date(Date.now() - 5 * oneHour)),
+    },
+    {
+      id: '753f3e99-e73a-43a3-9a50-e4a049d7ff8f',
+      username: 'kim',
+      ...commonColumns,
+      ...createDateColumns(new Date(Date.now() - 5 * oneHour)),
+    },
+    {
+      id: '753f3e99-e73a-43a3-9a50-d79d65f18ba7',
+      username: 'maria',
       ...commonColumns,
       ...createDateColumns(new Date(Date.now() - 5 * oneHour)),
     },

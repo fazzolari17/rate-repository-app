@@ -2,12 +2,28 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_REPOSITORY } from '../graphql/queries/getSingleRepository';
 
-const useGetRepository = ({ id }) => {
+const useGetRepository = ({ id, first }) => {
   const [repository, setRepository] = useState();
-  const { data, error, loading } = useQuery(GET_SINGLE_REPOSITORY, {
-    variables: { repositoryId: id },
-    fetchPolicy: 'cache-and-network'
+  const { data, error, loading, refetch, fetchMore, ...result } = useQuery(GET_SINGLE_REPOSITORY, {
+    fetchPolicy: 'cache-and-network',
+    variables: {
+      repositoryId: id,
+      first,
+    },
   });
+
+
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage;
+
+    if (!canFetchMore) return;
+
+    fetchMore({
+      variables: {
+        after: data.repository.reviews.pageInfo.endCursor,
+      }
+    })
+  };
 
   const fetchRepository = async () => {
       try {
@@ -18,13 +34,14 @@ const useGetRepository = ({ id }) => {
   };
 
   useEffect(() => {
-    fetchRepository();
+    refetch();
   }, [])
 
   return {
     repository,
     loading,
-    refetch: fetchRepository
+    refetch: fetchRepository,
+    fetchMore: handleFetchMore,
   }
 };
 

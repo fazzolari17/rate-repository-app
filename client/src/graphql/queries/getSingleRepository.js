@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_SINGLE_REPOSITORY = gql`
-  query Query($repositoryId: ID!) {
+  query Query($repositoryId: ID!, $first: Int, $after: String) {
     repository(id: $repositoryId) {
       id
       fullName
@@ -14,20 +14,28 @@ export const GET_SINGLE_REPOSITORY = gql`
       reviewCount
       ratingAverage
       stargazersCount
-      reviews {
-      edges {
-        node {
-          id
-          text
-          rating
-          createdAt
-          user {
+      reviews(first: $first, after: $after) {
+        totalCount
+        pageInfo {
+          startCursor
+          endCursor
+          hasNextPage
+          hasPreviousPage
+        }
+        edges {
+          cursor
+          node {
             id
-            username
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
           }
         }
       }
-    }
     }
   }
 `

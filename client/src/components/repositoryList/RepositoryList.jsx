@@ -1,55 +1,47 @@
 import useRepositories from '../../hooks/useRepositories';
 import RepositoryListContainer from './RepositoryListContainer';
+import { useDebounce } from 'use-debounce';
 import * as React from 'react';
 
 const RepositoryList = () => {
-  const [listOrder, setListOrder] = React.useState();
+  const [listOrder, setListOrder] = React.useState('Set List Order');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchDebounce] = useDebounce(searchQuery, 500);
 
-  const setRepoListOrder = (list) => {
+  const setRepoListOrder = (list, searchQuery) => {
     switch (list) {
       case 'Latest Repositories':
-        // refetch({ orderBy: 'CREATED_AT', orderDirection: 'DESC' });
-        return { orderBy: 'CREATED_AT', orderDirection: 'DESC' };
+        return { orderBy: 'CREATED_AT', orderDirection: 'DESC', searchKeyword: searchDebounce };
         break;
       case 'Highest Rated Repositories':
-        // refetch({ orderBy: 'RATING_AVERAGE', orderDirection: 'DESC' });
-        return { orderBy: 'RATING_AVERAGE', orderDirection: 'DESC' };
+        return { orderBy: 'RATING_AVERAGE', orderDirection: 'DESC', searchKeyword: searchDebounce };
         break;
       case 'Lowest Rated Repositories':
-        // refetch({ orderBy: 'RATING_AVERAGE', orderDirection: 'ASC' });
-        return { orderBy: 'RATING_AVERAGE', orderDirection: 'ASC' };
+        return { orderBy: 'RATING_AVERAGE', orderDirection: 'ASC', searchKeyword: searchDebounce };
         break;
       default:
-        return { orderBy: 'CREATED_AT', orderDirection: 'ASC' };
+        return { orderBy: 'CREATED_AT', orderDirection: 'ASC', searchKeyword: searchDebounce };
     }
-    // if (list === 'Latest Repositories') {
-    //   return { orderBy: 'CREATED_AT', orderDirection: 'DESC' };
-    // } else if (list === 'Highest Rated Repositories') {
-    //   return { orderBy: 'RATING_AVERAGE', orderDirection: 'DESC' };
-    // } else if (list === 'Lowest Rated Repositories') {
-    //   return { orderBy: 'RATING_AVERAGE', orderDirection: 'ASC' };
-    // } else {
-    //   return { orderBy: 'CREATED_AT', orderDirection: 'ASC' };
-    // }
   };
 
-  const { repositories, refetch, loading } = useRepositories(setRepoListOrder(listOrder));
+  const { repositories, refetch, loading, fetchMore } = useRepositories(setRepoListOrder(listOrder, searchQuery.toLowerCase()));
 
-  if (!repositories) {
-    refetch();
-  }
+  const onEndReach = () => fetchMore();
+
+  if (!repositories) refetch();
 
   React.useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
         refetch()
-      }, 2000);
-    }
-    refetch({ orderBy: 'CREATED_AT', orderDirection: 'DESC' })
-    console.log("LOADING", loading)
-  }, [ listOrder, repositories ])
+  }, [ listOrder, repositories, searchDebounce, fetchMore ])
 
-  return <RepositoryListContainer repositories={repositories} listOrder={listOrder} setListOrder={setListOrder} />;
+  return <RepositoryListContainer
+    repositories={repositories}
+    listOrder={listOrder}
+    setListOrder={setListOrder}
+    searchQuery={searchQuery}
+    setSearchQuery={setSearchQuery}
+    onEndReach={onEndReach}
+  />;
 };
 
 export default RepositoryList;

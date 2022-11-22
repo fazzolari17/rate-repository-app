@@ -4,7 +4,7 @@ import ItemSeparator from '../ItemSeparator';
 import ReviewItem from './ReviewItem';
 
 
-const SingleRepositoryContainer = ({ repository, onClick }) => {
+const SingleRepositoryContainer = ({ repository, onClick, onEndReach }) => {
   const show = true;
   
      const reviewNodes = repository.reviews
@@ -20,6 +20,8 @@ const SingleRepositoryContainer = ({ repository, onClick }) => {
         keyExtractor={({ id }) => id}
         ListHeaderComponent={() => <RepositoryInfo data={{ repository, show }} onClick={onClick} />}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.25}
       >
       </FlatList>
   )
