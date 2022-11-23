@@ -2,7 +2,7 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import { Link } from 'react-router-native';
 import Tab from './Tab';
-import useCheckAuthentication from '../../hooks/useCheckAuthentication';
+import useGetCurrentUser from '../../hooks/useGetCurrentUser.js';
 import useAuthStorage from '../../hooks/useAuthStorage';
 import { useApolloClient } from '@apollo/client';
 import { useNavigate } from 'react-router-native';
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const { data, error, loading, label } = useCheckAuthentication();
+  const { data, error, loading, label } = useGetCurrentUser();
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
   const navigate = useNavigate();
@@ -58,13 +58,25 @@ const AppBar = () => {
         <Link to='/'>
           <Tab label={'Repositories'} />
         </Link>
-        {(label === 'Sign Out') && <Link to='/reviewForm'>
-          <Tab label={'Create Review'} />
-        </Link>}
+        {
+          (label === 'Sign Out') && 
+          <>
+          <Link to='/reviewForm'>
+            <Tab label={'Create Review'} />
+          </Link>
+          <Link to='/myReviews'>
+            <Tab label={'My reviews'} />
+          </Link>
+          </>
+        }
+
         {signInLabel}
-        {(label === 'Sign In') && <Link to='/signUp'>
+        {
+          (label === 'Sign In') &&
+          <Link to='/signUp'>
           <Tab label={'Sign Up'} />
-        </Link>}
+          </Link>
+        }
       </ScrollView>
     </View>
   );

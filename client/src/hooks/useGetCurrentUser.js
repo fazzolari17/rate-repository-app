@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client';
-import { CHECK_AUTHENTICATION } from '../graphql/queries/checkAauthentication';
+import { GET_CURRENT_USER } from '../graphql/queries/getCurrentUser';
 
-const useCheckAuthentication = () => {
-  const { data, error, loading } = useQuery(CHECK_AUTHENTICATION, { fetchPolicy: 'cache-and-network' });
+const useGetCurrentUser = () => {
+  const { data, error, loading } = useQuery(GET_CURRENT_USER, { fetchPolicy: 'cache-and-network' });
   let label;
-  
+
   if (loading) {
     return 'Loading...'
   } else {
@@ -13,7 +13,6 @@ const useCheckAuthentication = () => {
     } else {
       label = 'Sign Out'
     }
-    
   }
  
   return {
@@ -24,4 +23,4 @@ const useCheckAuthentication = () => {
   }
 };
 
-export default useCheckAuthentication;
+export default useGetCurrentUser;
