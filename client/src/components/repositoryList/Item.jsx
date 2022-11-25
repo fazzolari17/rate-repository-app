@@ -1,5 +1,5 @@
 import { View, Image, Pressable } from 'react-native';
-import Text from '../Text';
+import Text from '../reuseableComponents/Text';
 import SmallItem from './SmallItem';
 import styles from './styles';
 

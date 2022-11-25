@@ -22,6 +22,7 @@ export const GET_MY_REVIEWS = gql`
             id
             username
           }
+          repositoryId
           userId
         }
       }

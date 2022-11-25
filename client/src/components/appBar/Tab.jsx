@@ -1,4 +1,4 @@
-import Text from '../Text';
+import Text from '../reuseableComponents/Text';
 
 const Tab = ({ label }) => {
   return (

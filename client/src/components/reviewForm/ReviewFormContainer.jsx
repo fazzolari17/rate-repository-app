@@ -2,8 +2,8 @@ import * as yup from 'yup';
 import styles from './styles';
 import { Formik } from 'formik';
 import { Pressable, View } from 'react-native';
-import FormikTextInput from '../FormikTextInput';
-import Text from '../Text';
+import FormikTextInput from '../reuseableComponents/FormikTextInput';
+import Text from '../reuseableComponents/Text';
 
 const initialValues = {
   repoOwner: '',

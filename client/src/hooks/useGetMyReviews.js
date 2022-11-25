@@ -17,10 +17,13 @@ const getMyReviews = () => {
   };
 
   useEffect(() => {
-    refetch()
-  }, []);
+    fetchMyReviews();
+  }, [data, myReviews]);
 
-  return { myReviews, refetch: fetchMyReviews };
+  return {
+    myReviews,
+    refetch: fetchMyReviews
+  };
 };
 
 export default getMyReviews;

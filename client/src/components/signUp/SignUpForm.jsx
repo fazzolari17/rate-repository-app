@@ -3,8 +3,8 @@ import YupPassword from 'yup-password'
 import styles from './styles';
 import { Formik } from 'formik';
 import { Pressable, View } from 'react-native';
-import FormikTextInput from '../FormikTextInput';
-import Text from '../Text';
+import FormikTextInput from '../reuseableComponents/FormikTextInput';
+import Text from '../reuseableComponents/Text';
 
 YupPassword(yup)
 
