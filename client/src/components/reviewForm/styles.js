@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
     width: 300,
-    height: 200,
+    height: 'fit-content',
     margin: 50,
     padding: 15,
     display: 'flex',
